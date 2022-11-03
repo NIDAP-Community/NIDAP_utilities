@@ -3,14 +3,13 @@
 # Version 0.1 Use to upload single template pipeline result to NIDAP
 
 set -e
-
+# NIDAP token
 key=$1
 
-# Input arguements
+# Head folder path on NIDAP
 folder_path=$2
 
-#output_dataset_rid=$2
-
+# Name of dataset wanted to create
 dataset_name=$3
 
 files_to_be_uploaded_list=$4
@@ -19,6 +18,9 @@ echo "File list: $files_to_be_uploaded_list"
 names_to_be_uploaded_list=$5
 echo "Name list: $names_to_be_uploaded_list"
 
+
+
+#output_dataset_rid=$2
 # V 0.1 version does not allow new dataset to be created to avoid confusion
 
 create_new_dataset="True"
