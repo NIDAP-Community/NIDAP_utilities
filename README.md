@@ -6,7 +6,7 @@ Utilities to handle NIDAP tasks
     1. NIDAP user token <br />
     2. Target folder path on NIDAP file system, please make sure you have correct permission to write to the folder. <br />
     3. Name of dataset user wants to create. <br />
-    4. List of files wanted to upload. <br />
+    4. List of file paths wanted to upload as a single arguement, or a single file path. <br />
     5. List of full file name (includes extension, plead aviod space and symbols) stored in NIDAP dataset. Althouhg user can change the uploaded name, it is recommended to keep the name of source file and target file the same to avoid confusion. <br />
 
   Error message from the the API call will be displayed for troubleshooting. 
