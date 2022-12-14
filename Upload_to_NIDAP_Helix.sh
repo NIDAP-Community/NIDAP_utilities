@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Version 0.1 Use to upload single template pipeline result to NIDAP
+# Version 0.1.1 Use to upload multiple files to single NIDAP dataset
 
 set -e
 # NIDAP token
@@ -12,11 +12,11 @@ folder_path=$2
 # Name of dataset wanted to create
 dataset_name=$3
 
-files_to_be_uploaded_list=$4
-echo "File list: $files_to_be_uploaded_list"
+files_to_be_uploaded_list=($4)
+echo "File list: ${files_to_be_uploaded_list[@]}"
 
-names_to_be_uploaded_list=$5
-echo "Name list: $names_to_be_uploaded_list"
+names_to_be_uploaded_list=($5)
+echo "Name list: ${names_to_be_uploaded_list[@]}"
 
 
 
