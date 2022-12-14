@@ -12,13 +12,21 @@ Utilities to handle NIDAP tasks
   Error message from the the API call will be displayed for troubleshooting. 
   
   Example:
-    To upload sinlge file to the dataset created:
+  To upload sinlge file to the dataset created:
      
-    source <PATH TO SCRIPT>/Upload_to_NIDAP_Helix.sh $NIDAP_TOEKN "<FOLDER PATH ON NIDAP>" "<NAME OF DATASET TO CREATE>" "<PATH TO FILE/FILE.extension>" "<NAME OF FILE.extension>"
+    source <PATH TO SCRIPT>/Upload_to_NIDAP_Helix.sh $NIDAP_TOEKN \
+                                                      "<FOLDER PATH ON NIDAP>" \
+                                                      "<NAME OF DATASET TO CREATE>" \
+                                                      "<PATH TO FILE/FILE.extension>" \
+                                                      "<NAME OF FILE.extension>"
     
-    To upload multiple files to the dataset created:
+  To upload multiple files to the dataset created:
     
-    source <PATH TO SCRIPT>/Upload_to_NIDAP_Helix.sh $NIDAP_TOEKN "<FOLDER PATH ON NIDAP>" "<NAME OF DATASET TO CREATE>" "<PATH TO FILE/FILE.extension>" "<NAME OF FILE.extension>"
+    source <PATH TO SCRIPT>/Upload_to_NIDAP_Helix.sh $NIDAP_TOEKN \
+                                                    "<FOLDER PATH ON NIDAP>" \
+                                                    "<NAME OF DATASET TO CREATE>" \
+                                                    ""<PATH TO FILE1/FILE1.extension>" "<PATH TO FILE2/FILE2.extension>" ... "<PATH TO FILEn/FILEn.extension>"" \
+                                                    ""<NAME OF FILE1.extension>" "<NAME OF FILE2.extension>" ... "<NAME OF FILEn.extension>""
     
 
 
