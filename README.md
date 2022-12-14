@@ -10,6 +10,16 @@ Utilities to handle NIDAP tasks
     5. List of full file name (includes extension, plead aviod space and symbols) stored in NIDAP dataset. Althouhg user can change the uploaded name, it is recommended to keep the name of source file and target file the same to avoid confusion. <br />
 
   Error message from the the API call will be displayed for troubleshooting. 
+  
+  Example:
+    To upload sinlge file to the dataset created:
+     
+    source <PATH TO SCRIPT>/Upload_to_NIDAP_Helix.sh $NIDAP_TOEKN "<FOLDER PATH ON NIDAP>" "<NAME OF DATASET TO CREATE>" "<PATH TO FILE/FILE.extension>" "<NAME OF FILE.extension>"
+    
+    To upload multiple files to the dataset created:
+    
+    source <PATH TO SCRIPT>/Upload_to_NIDAP_Helix.sh $NIDAP_TOEKN "<FOLDER PATH ON NIDAP>" "<NAME OF DATASET TO CREATE>" "<PATH TO FILE/FILE.extension>" "<NAME OF FILE.extension>"
+    
 
 
 ## Download script: Download_from_NIDAP.sh
