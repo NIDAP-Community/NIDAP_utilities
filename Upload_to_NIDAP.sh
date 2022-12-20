@@ -1,31 +1,29 @@
 #!/bin/bash
 
-# Version 0.1.1 Use to upload multiple files to single NIDAP dataset
+# Version 0.1 Use to upload single template pipeline result to NIDAP
 
 set -e
-# NIDAP token
+
 key=$1
 
-# Head folder path on NIDAP
-folder_path=$2
+# Input arguements
+# folder_path=$2
 
-# Name of dataset wanted to create
-dataset_name=$3
+output_dataset_rid=$2
 
-files_to_be_uploaded_list=($4)
-echo "File list: ${files_to_be_uploaded_list[@]}"
+files_to_be_uploaded_list=$3
+echo "File list: $files_to_be_uploaded_list"
 
-names_to_be_uploaded_list=($5)
-echo "Name list: ${names_to_be_uploaded_list[@]}"
+names_to_be_uploaded_list=$4
+echo "Name list: $names_to_be_uploaded_list"
 
-
-
-#output_dataset_rid=$2
 # V 0.1 version does not allow new dataset to be created to avoid confusion
 
-create_new_dataset="True"
+create_new_dataset="False"
 
-logic_path=$folder_path"/"$dataset_name
+#dataset_name=$3
+
+#logic_path=$folder_path"/"$dataset_name
 
 # Processing
 
@@ -107,12 +105,12 @@ function commit_transaction {
 }
 
 #Create upload log
-if [ "$create_new_dataset" = "True" ]
-  then
-    echo "Upload job to master branch to create dataset $dataset_name in $folder_path" > master_job_log.log
-  else
-    echo "Upload job at $time_stamp_branch to dataset $output_dataset_rid in $time_stamp_branch branch" > master_job_log.log
-fi
+# if [ "$create_new_dataset" = "True" ]
+#   then
+#     echo "Upload job at $time_stamp_branch to create dataset $dataset_name in $folder_path" > master_job_log.log
+#   else
+#     echo "Upload job at $time_stamp_branch to dataset $output_dataset_rid in $time_stamp_branch branch" > master_job_log.log
+# fi
 
 # Create dataset
 if [ "$create_new_dataset" = "True" ]
