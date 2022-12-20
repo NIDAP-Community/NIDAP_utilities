@@ -29,7 +29,7 @@ Utilities to handle NIDAP tasks
                                                     ""<NAME OF FILE1.extension>" "<NAME OF FILE2.extension>" ... "<NAME OF FILEn.extension>""
     
 
-## Download script user interface :Downloader_UI.sh
+## Download script user interface: Downloader_UI.sh
   User interface for Download script. Consider downloading into local directory may require higher level of complexity, this allows user to specify where the file to be stored and under customed filename. This also allows downloading multiple files in one script run by providing a list of file wanted to be downloaded in the same trasaction rid as a single arguement.
 
 
