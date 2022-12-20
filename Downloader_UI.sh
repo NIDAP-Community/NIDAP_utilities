@@ -4,19 +4,19 @@
 # Author rui.he@nih.gov
 
 # User's NIDAP Token
-NIDAP_token=; 
+NIDAP_token=;
 
 # RID of target dataset
-dataset_rid=; v
+dataset_rid=;
 
 # RID of target transaction. Note this value may change for different files in a branch and among branches.
-tranx_rid=; 
+tranx_rid=;
 
 # Local directory to store files 
-target_folder_path=; 
+target_folder_path=;
 
 # File name on NIDAP including extension, can be a single filecan or a List of files, eg ("file1.ext" "file2.ext" ...) 
-filename_on_NIDAP=; #
+filename_on_NIDAP=;
 
 # File name on local including extension, can be a single filecan or a List of files, eg ("file1.ext" "file2.ext" ...) 
 filename_on_local=;
