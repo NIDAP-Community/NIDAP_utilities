@@ -54,7 +54,7 @@ function get_trasaction_rid_reponse {
 function upload_file {
   urlpath=""
   urlpath="https://nidap.nih.gov/foundry-data-proxy/api/dataproxy/datasets/$rid/transactions/$tranrid/putFile?logicalPath=$2"
-  echo $urlpath
+  echo "$urlpath"
   
   upload_file_response=$(curl -X POST -H "Authorization: Bearer $key" \
                               "$urlpath" \
@@ -63,11 +63,11 @@ function upload_file {
   current_log=File_upload_$2.log
   
   echo "$upload_file_response" > "$current_log"
-  echo "$upload_file_reponse" >> master_job_log.log
+  echo "$upload_file_response" >> master_job_log.log
   
   get_err_reponse "$current_log"
   
-  if [ ! -z "$err_response" ]
+  if [ -n "$err_response" ]
     then
       echo "Error occured when uploading file: $2"
       echo "$err_response"
@@ -91,7 +91,7 @@ function commit_transaction {
   
   get_err_reponse Transaction_commit.log
   
-  if [ ! -z "$err_response" ]
+  if [ -n "$err_response" ]
     then
       echo "Error occured when commiting transaction: "
       echo "$err_response"
@@ -125,7 +125,7 @@ if [ "$create_new_dataset" = "True" ]
                                 
     get_err_reponse Dataset_creation.log
     
-    if [ ! -z "$err_response" ]
+    if [ -n "$err_response" ]
       then
         echo "Error occured when creating dataset: "
         echo "$err_response"
@@ -141,7 +141,7 @@ if [ "$create_new_dataset" = "True" ]
     
 else
     echo "Output dataset selected."
-    rid="$output_dataset_rid"
+    # rid="$output_dataset_rid"
     echo "$rid"
     branch_name="$time_stamp_branch"
 fi
@@ -163,7 +163,8 @@ branch_create_url="https://nidap.nih.gov/foundry-catalog/api/catalog/datasets/$r
 
 echo "$branch_create_url" >> master_job_log.log
 
-create_branch_response=$(curl --request POST $branch_create_url \
+create_branch_response=$(curl --request POST \
+                            "$branch_create_url" \
                             -H "Authorization: Bearer $key" \
                             -H "Content-Type: application/json" \
                             -d '{}')
@@ -173,7 +174,7 @@ echo "$create_branch_response" >> master_job_log.log
 
 get_err_reponse Branch_creation.log
 
-if [ ! -z "$err_response" ]
+if [ -n "$err_response" ]
   then
     echo "Error occured when creating branch: "
     echo "$err_response"
@@ -195,7 +196,7 @@ echo "$create_transaction_response" >> master_job_log.log
 
 get_err_reponse Transaction_creation.log
 
-if [ ! -z "$err_response" ]
+if [ -n "$err_response" ]
   then
     echo "Error occured when creating transaction: "
     echo "$err_response"
