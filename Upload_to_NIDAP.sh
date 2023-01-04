@@ -23,7 +23,7 @@ create_new_dataset="True"
 
 dataset_name=$3
 
-#logic_path=$folder_path"/"$dataset_name
+logic_path=$folder_path"/"$dataset_name
 
 # Processing
 
