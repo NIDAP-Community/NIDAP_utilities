@@ -1,7 +1,7 @@
 # NIDAP_utilities
 Utilities to handle NIDAP tasks
 
-## Upload script: Upload_to_NIDAP_Helix.sh
+## Upload script: Upload_to_NIDAP.sh
   Takes in five arguements in order: <br />
     1. NIDAP user token <br />
     2. Target folder path on NIDAP file system, please make sure you have correct permission to write to the folder. <br />
