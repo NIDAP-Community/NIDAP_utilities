@@ -4,11 +4,11 @@
 
 set -e
 
-key=$1
+key="$1"
 
 # Input arguements
 
-output_dataset_rid=$2
+output_dataset_rid="$2"
 
 files_to_be_uploaded_list=("$3")
 echo "File list: ${files_to_be_uploaded_list[*]}"
