@@ -1,7 +1,7 @@
 # NIDAP_utilities
 Utilities to handle NIDAP tasks
 
-## Upload script: Upload_to_NIDAP.sh
+## Upload script: Upload_to_NIDAP_Folder.sh
   Takes in five arguements in order: <br />
     1. NIDAP user token <br />
     2. Target folder path on NIDAP file system, please make sure you have correct permission to write to the folder. <br />
@@ -14,7 +14,7 @@ Utilities to handle NIDAP tasks
   Example:
   To upload sinlge file to the dataset created:
      
-    source <PATH TO SCRIPT>/Upload_to_NIDAP.sh $NIDAP_TOEKN \
+    source <PATH TO SCRIPT>/Upload_to_NIDAP_Folder.sh $NIDAP_TOEKN \
                                                       "<FOLDER PATH ON NIDAP>" \
                                                       "<NAME OF DATASET TO CREATE>" \
                                                       "<PATH TO FILE/FILE.extension>" \
@@ -22,7 +22,7 @@ Utilities to handle NIDAP tasks
     
   To upload multiple files to the dataset created:
     
-    source <PATH TO SCRIPT>/Upload_to_NIDAP.sh $NIDAP_TOEKN \
+    source <PATH TO SCRIPT>/Upload_to_NIDAP_Folder.sh $NIDAP_TOEKN \
                                                     "<FOLDER PATH ON NIDAP>" \
                                                     "<NAME OF DATASET TO CREATE>" \
                                                     ""<PATH TO FILE1/FILE1.extension>" "<PATH TO FILE2/FILE2.extension>" ... "<PATH TO FILEn/FILEn.extension>"" \
