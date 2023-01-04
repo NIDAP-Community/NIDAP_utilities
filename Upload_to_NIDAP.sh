@@ -7,9 +7,9 @@ set -e
 key=$1
 
 # Input arguements
-# folder_path=$2
+folder_path=$2
 
-output_dataset_rid=$2
+# output_dataset_rid=$2
 
 files_to_be_uploaded_list=$4
 echo "File list: $files_to_be_uploaded_list"
@@ -21,7 +21,7 @@ echo "Name list: $names_to_be_uploaded_list"
 
 create_new_dataset="True"
 
-#dataset_name=$3
+dataset_name=$3
 
 #logic_path=$folder_path"/"$dataset_name
 
