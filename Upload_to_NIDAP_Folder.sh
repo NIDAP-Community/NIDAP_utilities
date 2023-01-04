@@ -1,35 +1,25 @@
 #!/bin/bash
 
-# Version 0.1 Use to upload single template pipeline result to NIDAP
+# Upload to NIDAP folder with a customed dataset name
 
 set -e
 
-key=$1
+key="$1"
 
 # Input arguements
-folder_path=$2
+folder_path="$2"
 
-# output_dataset_rid=$2
+dataset_name="$3"
 
-files_to_be_uploaded_list=$4
-echo "File list: $files_to_be_uploaded_list"
+files_to_be_uploaded_list=("$4")
+echo "File list: ${files_to_be_uploaded_list[*]}"
 
-names_to_be_uploaded_list=$5
-echo "Name list: $names_to_be_uploaded_list"
-
-# V 0.1 version does not allow new dataset to be created to avoid confusion
-
-create_new_dataset="True"
-
-dataset_name=$3
+names_to_be_uploaded_list=("$5")
+echo "Name list: ${names_to_be_uploaded_list[*]}"
 
 logic_path=$folder_path"/"$dataset_name
 
 # Processing
-
-time_stamp_branch=$(date +%Y_%m_%d_%H_%M_%S)
-
-
 
 function get_err_reponse {
   err_response=""
@@ -104,53 +94,35 @@ function commit_transaction {
   rm Transaction_commit.log
 }
 
-#Create upload log
-# if [ "$create_new_dataset" = "True" ]
-#   then
-#     echo "Upload job at $time_stamp_branch to create dataset $dataset_name in $folder_path" > master_job_log.log
-#   else
-#     echo "Upload job at $time_stamp_branch to dataset $output_dataset_rid in $time_stamp_branch branch" > master_job_log.log
-# fi
-
 # Create dataset
-if [ "$create_new_dataset" = "True" ]
+
+create_dataset_response=$(curl --request POST 'https://nidap.nih.gov/foundry-catalog/api/catalog/datasets' \
+                            -H "Authorization: Bearer $key" \
+                            -H "Content-Type: application/json" \
+                            -d '{"path":"'"$logic_path"'"}')
+
+echo "$create_dataset_response" > Dataset_creation.log
+echo "$create_dataset_response" >> master_job_log.log
+
+get_err_reponse Dataset_creation.log
+
+if [ -n "$err_response" ]
   then
-    create_dataset_response=$(curl --request POST 'https://nidap.nih.gov/foundry-catalog/api/catalog/datasets' \
-                                -H "Authorization: Bearer $key" \
-                                -H "Content-Type: application/json" \
-                                -d '{"path":"'"$logic_path"'"}')
-                                
-    echo "$create_dataset_response" > Dataset_creation.log
-    echo "$create_dataset_response" >> master_job_log.log
-                                
-    get_err_reponse Dataset_creation.log
-    
-    if [ -n "$err_response" ]
-      then
-        echo "Error occured when creating dataset: "
-        echo "$err_response"
-        exit 1
-    else
-      echo "Dataset created."
-      get_rid_reponse Dataset_creation.log
-      echo "$rid"
-      branch_name="master"
-    fi
-    
-    rm Dataset_creation.log
-    
+    echo "Error occured when creating dataset: "
+    echo "$err_response"
+    exit 1
 else
-    echo "Output dataset selected."
-    # rid="$output_dataset_rid"
-    echo "$rid"
-    branch_name="$time_stamp_branch"
+  echo "Dataset created."
+  get_rid_reponse Dataset_creation.log
+  echo "$rid"
+  branch_name="master"
 fi
+
+rm Dataset_creation.log
 
 # Create branch
-if [ "$create_new_dataset" = "True" ]
-  then
-    branch_name="master"
-fi
+branch_name="master"
+
 
 # check_master_branch=$(curl --request GET "https://nidap.nih.gov/foundry-catalog/api/catalog/datasets/$rid/branches" \
 #                             -H "Authorization: Bearer $key" \
