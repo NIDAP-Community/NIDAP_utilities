@@ -11,15 +11,15 @@ key=$1
 
 output_dataset_rid=$2
 
-files_to_be_uploaded_list=$3
+files_to_be_uploaded_list=$4
 echo "File list: $files_to_be_uploaded_list"
 
-names_to_be_uploaded_list=$4
+names_to_be_uploaded_list=$5
 echo "Name list: $names_to_be_uploaded_list"
 
 # V 0.1 version does not allow new dataset to be created to avoid confusion
 
-create_new_dataset="False"
+create_new_dataset="True"
 
 #dataset_name=$3
 
