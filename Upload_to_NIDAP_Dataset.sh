@@ -10,11 +10,11 @@ key=$1
 
 output_dataset_rid=$2
 
-files_to_be_uploaded_list=$3
-echo "File list: $files_to_be_uploaded_list"
+files_to_be_uploaded_list=("$3")
+echo "File list: ${files_to_be_uploaded_list[*]}"
 
-names_to_be_uploaded_list=$4
-echo "Name list: $names_to_be_uploaded_list"
+names_to_be_uploaded_list=("$4")
+echo "Name list: ${names_to_be_uploaded_list[*]}"
 
 # Processing
 
