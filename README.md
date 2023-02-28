@@ -42,8 +42,7 @@ Utilities to handle NIDAP tasks
     5. Full name (includes extension) of the targeted file to be stored locally. <br />
 
   Error message from the the API call will be displayed for troubleshooting. 
-## nd_pd: Palantir download; copies file from Palantir to local
-##           system;
+## nd_pd: Palantir download; copies file from Palantir to local system;
 
 NOTE: options and associated input, if any, may be passed
          in any order;
@@ -67,8 +66,7 @@ Returns:
 string: SUCCESS or FAILURE
 
 
-## nd_pd: Palantir upload; copies file from local to Palantir
-##           system;
+## nd_pd: Palantir upload; copies file from local to Palantir system;
 
 NOTE: options and associated input, if any, may be passed
          in any order;
@@ -92,8 +90,7 @@ Returns:
 string: SUCCESS or FAILURE
 
 
-## nd_ls: implements the BASH ls command with options for local
-##           and/or Palantir target system;
+## nd_ls: implements the BASH ls command with options for local and/or Palantir target system;
 
 NOTE: requires curl, jq;
 
@@ -120,8 +117,7 @@ Returns:
 SUCCESS or FAILURE; Contents of requested folder/dataset(s);
 
 
-## nd_rm: implements the BASH rm command with options for local
-##           or Palantir target system;
+## nd_rm: implements the BASH rm command with options for local or Palantir target system;
 
 NOTE: requires curl, jq;
 
@@ -150,8 +146,7 @@ Returns:
 string: SUCCESS or FAILURE
 
 
-## nd_mv: implements the BASH mv command with options for local
-##           and/or Palantir target system;
+## nd_mv: implements the BASH mv command with options for local and/or Palantir target system;
 
 NOTE: requires curl, jq;
 
@@ -187,8 +182,7 @@ Returns:
 SUCCESS or FAILURE
 
 
-## nd_cp: implements the BA/bin/bash cp command with options for local
-##           and/or Palantir target system;
+## nd_cp: implements the BA/bin/bash cp command with options for local and/or Palantir target system;
 
 NOTE: requires curl, jq;
 
