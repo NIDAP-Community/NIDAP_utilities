@@ -18,6 +18,8 @@
 #             -u (-user_token) "user_token"
 #             -d (-domain) "domain_url"
 #                [default:https://nidap.nih.gov]
+#             -b (-branch_name) "myBranch"
+                # [default: master]
 # ............uploads local from_file as Palantir to_path;
 #
 # sh nd_pu.sh -h (-help)
@@ -52,6 +54,7 @@ then
     strToPath="/"
     strUserToken=""
     strDomain=""
+    strBranchName=""
     while [ $# -ne 0 ]
     do
         strArg=`echo "$1" | awk -va="$1" '{print tolower(a)}'`
@@ -75,6 +78,10 @@ then
         then
             shift
             strDomain="$1"
+        elif [ "$strArg" = "-b" ] || [ "$strArg" = "-branch_name" ]
+        then
+            shift
+            strBranchName="$1"
         fi
         shift
     done
@@ -88,11 +95,20 @@ then
     then
         echo ""
         #echo "Uploading file: [$strFromFile] to [$strToRID]:[$strToPath]...";
-        strPost=$(curl -X POST \
-            -H "Content-type: application/octet-stream" \
-            -H "Authorization: Bearer $strUserToken" \
-            "$strDomain/api/v1/datasets/$strToRID/files:upload?filePath=$strToPath&preview=true" \
-            -d '@'$strTestFromFile)
+        if [ "$strBranchName" == "" ] 
+        then
+            strPost=$(curl -X POST \
+                -H "Content-type: application/octet-stream" \
+                -H "Authorization: Bearer $strUserToken" \
+                "$strDomain/api/v1/datasets/$strToRID/files:upload?filePath=$strToPath&preview=true" \
+                -d '@'$strFromFile)
+        else
+            strPost=$(curl -X POST \
+                -H "Content-type: application/octet-stream" \
+                -H "Authorization: Bearer $strUserToken" \
+                "$strDomain/api/v1/datasets/$strToRID/files:upload?filePath=$strToPath&branchId=$strBranchName&preview=true" \
+                -d '@'$strFromFile)
+        fi
         echo "$strPost"
         # TODO: determine error conditions: first line begins "errorCode"
         # if ...
