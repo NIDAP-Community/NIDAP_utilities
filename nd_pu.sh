@@ -101,13 +101,13 @@ then
                 -H "Content-type: application/octet-stream" \
                 -H "Authorization: Bearer $strUserToken" \
                 "$strDomain/api/v1/datasets/$strToRID/files:upload?filePath=$strToPath&preview=true" \
-                -d '@'$strFromFile)
+                --data-binary '@'$strFromFile)
         else
             strPost=$(curl -X POST \
                 -H "Content-type: application/octet-stream" \
                 -H "Authorization: Bearer $strUserToken" \
-                "$strDomain/api/v1/datasets/$strToRID/files:upload?filePath=$strToPath&branchId=$strBranchName&preview=true" \
-                -d '@'$strFromFile)
+                "$strDomain/api/v1/datasets/$strToRID/files:upload?filePath=$strToPath&branchId=$strBranchName" \
+                --data-binary '@'$strFromFile)
         fi
         echo "$strPost"
         # TODO: determine error conditions: first line begins "errorCode"
@@ -176,12 +176,11 @@ then
     strDomain="$strTestDomain"
     strTimeStamp=$(date "+%Y.%m.%d-%H.%M.%S")
     echo "$strTimeStamp">"$strFromFile"
-    #echo "Uploading file: [$strFromFile] to [$strToRID]:[$strToPath]...";
     strPost=$(curl -X POST \
 	    -H "Content-type: application/octet-stream" \
 	    -H "Authorization: Bearer $strUserToken" \
 	    "$strDomain/api/v1/datasets/$strToRID/files:upload?filePath=$strToPath&preview=true" \
-	    -d '@'$strTestFromFile)
+	    --data-binary '@'$strTestFromFile)
     echo "\n$strPost\n"
     # TODO: determine error conditions
     # if ...
