@@ -100,7 +100,7 @@ then
             strPost=$(curl -X POST \
                 -H "Content-type: application/octet-stream" \
                 -H "Authorization: Bearer $strUserToken" \
-                "$strDomain/api/v1/datasets/$strToRID/files:upload?filePath=$strToPath&preview=true" \
+                "$strDomain/api/v1/datasets/$strToRID/files:upload?filePath=$strToPath" \
                 --data-binary '@'$strFromFile)
         else
             strPost=$(curl -X POST \
