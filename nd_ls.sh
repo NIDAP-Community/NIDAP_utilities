@@ -98,10 +98,23 @@ then
             "$strDomain/api/v1/datasets/$strRID/files?preview=true")
         if [ "$strPost" != "" ]
         then
-            strPost=sh ./nd_json_parser.sh "$strPost"
-            strResult=`echo "$strPost" | head -1`
-            if [ strResult == "errorCode"]
-            then
+            # Check if the JSON string contains "data" or "errorCode" and extract the corresponding values
+
+            # Use jq to check for the presence of "data" or "errorCode"
+            data_check=$(echo "$strPost" | jq '.data')
+            error_check=$(echo "$strPost" | jq '.errorCode')
+
+            if [[ "$data_check" != "null" ]]; then
+                result=$(echo "$strPost" | jq -r '.data[] | .path + " " + .sizeBytes')
+            elif [[ "$error_check" != "null" ]]; then
+                result=$(echo "$strPost" | jq -r '.errorCode ')
+            else
+                result="$strPost"
+            fi
+
+            echo "$result"
+
+            if [[ "$error_check" != "null" ]]; then
                 strError="$strPost"
                 strError="$strError\nLocal Folder:\t$strFolder"
                 strError="$strError\nObject RID:\t$strRID"
